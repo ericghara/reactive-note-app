@@ -1,8 +1,7 @@
 package org.ericgha.reactivetodolist.controllers;
 
 import lombok.RequiredArgsConstructor;
-import org.ericgha.reactivetodolist.model.ToDoItem;
-import org.ericgha.reactivetodolist.model.ToDoList;
+import org.ericgha.reactivetodolist.dtos.ToDoList;
 import org.ericgha.reactivetodolist.repository.ToDoListRepository;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.reactive.config.EnableWebFlux;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import reactor.core.publisher.Sinks;

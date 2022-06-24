@@ -1,4 +1,4 @@
-package org.ericgha.reactivetodolist.model;
+package org.ericgha.reactivetodolist.dtos;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

@@ -1,6 +1,6 @@
 package org.ericgha.reactivetodolist.repository;
 
-import org.ericgha.reactivetodolist.model.ToDoItem;
+import org.ericgha.reactivetodolist.dtos.ToDoItem;
 import org.springframework.data.r2dbc.repository.R2dbcRepository;
 import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Flux;

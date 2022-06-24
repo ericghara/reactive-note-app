@@ -1,11 +1,9 @@
-package org.ericgha.reactivetodolist.model;
+package org.ericgha.reactivetodolist.dtos;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Value;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
-import org.springframework.validation.annotation.Validated;
 
 @Data
 @NoArgsConstructor

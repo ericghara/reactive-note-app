@@ -11,4 +11,9 @@ spring:
     password: password
   datasource:
     initialization-mode: always
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: https://auth.ericgha.com/realms/client
 

@@ -1,4 +1,4 @@
-package org.ericgha.reactivetodolist.security;
+package org.ericgha.reactivetodolist.dtos;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
