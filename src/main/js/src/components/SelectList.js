@@ -1,6 +1,5 @@
-import axios from "axios"
 import {useEffect} from "react"
-import { getEndpoint } from "./Constants"
+import HttpService from "../services/HttpService"
 import { ListButtonStyled, SelectListsStyled, ButtonsHolderStyled, SelectListsHeaderStyled } from "./styles/SelectLists.styled"
 
 //state props: {availLists, setAvailLists, curList, setCurList}
@@ -50,9 +49,11 @@ const handleListClick = (clickedList, {setCurList, curList, availLists, setAvail
 
 const useFetchLists = (setAvailLists, availLists) => {
     useEffect( () => {
-                axios.get(getEndpoint("getLists"), {params : {userId : 1}})
+                HttpService.getClient().get(HttpService.getEndpoint("getLists"), {params : {userId : 1}})
                     .then( ({data}) => setAvailLists(data) ) 
-                    .catch(e => setAvailLists([]) ) 
+                    .catch(e => { 
+                        console.log(e)
+                        setAvailLists([]) } ) 
                 }
     , [setAvailLists]
     )

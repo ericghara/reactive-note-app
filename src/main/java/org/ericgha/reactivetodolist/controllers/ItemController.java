@@ -55,7 +55,6 @@ public class ItemController {
     }
 
     @GetMapping("")
-    @CrossOrigin
     Flux<ToDoItem> getItems(@RequestParam Optional<Long> listId, ServerHttpResponse response) {
         if (listId.isEmpty() ) {
             response.setStatusCode(HttpStatus.NO_CONTENT);

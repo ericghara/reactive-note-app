@@ -1,6 +1,5 @@
-import axios from "axios"
 import {useEffect} from "react"
-import { getEndpoint } from "./Constants"
+import HttpService from "../services/HttpService"
 import { ToDoListStyled, ToDoCardStyled, ToDoListHeaderStyled } from "./styles/ToDoListContainer.styled"
 
 const ToDoItem = ({itemId, listId, itemIndex, itemText}) =>
@@ -32,7 +31,7 @@ const ToDoList = ({list, items, setItems}) => {
 
 const useToDoList = ({listId}, setItems) => {
     useEffect( () => { 
-            axios.get(getEndpoint("getItems"), {params: {listId}} ) // modify
+            HttpService.getClient().get(HttpService.getEndpoint("getItems"), {params: {listId}} ) // modify
             .then(response => response.data.sort( (a,b) => a.itemIndex - b.itemIndex ) )
             .then(items => setItems(items) )
             .catch(e => { setItems([]) 
