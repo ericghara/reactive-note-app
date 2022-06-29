@@ -1,0 +1,8 @@
+{
+    "realm": "client",
+    "auth-server-url": "https://auth.ericgha.com/",
+    "ssl-required": "external",
+    "resource": "ToDo",
+    "public-client": true,
+    "confidential-port": 0
+  }
