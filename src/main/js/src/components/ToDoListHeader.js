@@ -1,5 +1,4 @@
-import {ToDoListHeaderStyled} from "./styles/ToDoListContainer.styled";
-import {Icon} from "./styles/SelectLists.styled";
+import {ToDoListHeaderStyled, HeaderIcon} from "./styles/ToDoListContainer.styled";
 import {useEffect, useState} from "react";
 import UserService from "../services/UserService";
 import {IconService} from "../services/IconService";
@@ -51,7 +50,7 @@ const EditIcon = ({stateProps, inputProps}) => {
     if (inputProps.inputActive) {
         return null
     }
-    return <Icon onClick={handleEditListName(stateProps, inputProps)}
+    return <HeaderIcon onClick={handleEditListName(stateProps, inputProps)}
                  src={IconService.get("edit")}
                  alt={"edit"}
                  size={10}/>
@@ -61,7 +60,7 @@ const UndoIcon = ({stateProps, inputProps}) => {
     if (!inputProps.inputActive) {
         return null
     }
-    return <Icon onClick={handleUndoEditListName(inputProps)}
+    return <HeaderIcon onClick={handleUndoEditListName(inputProps)}
                  src={IconService.get("undo")}
                  alt={"edit"}
                  size={10}/>
@@ -71,8 +70,8 @@ const SaveIcon = ({stateProps, inputProps}) => {
     if (!inputProps.inputActive) {
         return null
     }
-    return <Icon onClick={handleSave(stateProps, inputProps)}
-                 src={IconService.get("save")}
+    return <HeaderIcon onClick={handleSave(stateProps, inputProps)}
+                 src={IconService.get("checkMark")}
                  alt={"edit"}
                  size={10}/>
 }

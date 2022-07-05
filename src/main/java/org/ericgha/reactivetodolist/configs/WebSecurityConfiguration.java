@@ -41,6 +41,7 @@ import java.util.List;
 import java.util.Map;
 
 import static org.springframework.http.HttpMethod.GET;
+import static org.springframework.http.HttpMethod.POST;
 
 @EnableWebFluxSecurity
 @EnableReactiveMethodSecurity
@@ -82,7 +83,7 @@ public class WebSecurityConfiguration {
                 .authorizeExchange()
                 .matchers( PathRequest.toStaticResources().atCommonLocations() )
                 .permitAll()
-                .pathMatchers( GET, "/api/list**", "/api/item**" )
+                .pathMatchers(  "/api/list**", "/api/item**" )
                 .authenticated()
 
                 .and()

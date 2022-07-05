@@ -16,8 +16,6 @@ spring:
     url: r2dbc:postgresql://localhost:5434
     username: root  # change from root in future
     password: password
-  datasource:
-    initialization-mode: always
   security:
     oauth2:
       client:
@@ -35,4 +33,7 @@ spring:
       resourceserver:
         jwt:
           issuer-uri: https://auth.ericgha.com/realms/client
+  sql:
+    init:
+      mode: never
 

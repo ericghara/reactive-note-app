@@ -5,7 +5,6 @@ import org.ericgha.reactivetodolist.dtos.ToDoItem;
 import org.ericgha.reactivetodolist.repository.ToDoItemRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.server.reactive.ServerHttpResponse;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,6 +20,8 @@ import reactor.core.publisher.Sinks;
 import java.time.Duration;
 import java.util.Optional;
 
+import static org.springframework.http.HttpStatus.BAD_REQUEST;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("api/item")
@@ -34,7 +35,7 @@ public class ItemController {
     }
 
     @PostMapping("")
-    Mono<ToDoItem> addPost(@RequestBody ToDoItem item) {
+    Mono<ToDoItem> addItem(@RequestBody ToDoItem item) {
         return toDoItemRepository.save(item);
     }
 
@@ -44,14 +45,12 @@ public class ItemController {
 //    }
 
     @DeleteMapping("")
-    Mono<Boolean> deleteItem(@RequestBody ToDoItem item) {
-        Sinks.One<Boolean> sink = Sinks.one();
-        toDoItemRepository.deleteById(item.getItemId() )
-                          .timeout(Duration.ofSeconds(5) )
-                          .doOnSuccess(s -> sink.tryEmitValue(true) )
-                          .doOnError(e -> sink.tryEmitValue(false) )
-                          .subscribe();
-        return sink.asMono();
+    Mono<Long> deleteItem(@RequestBody ToDoItem item, ServerHttpResponse response) {
+        return toDoItemRepository.deleteById(item.getItemId() )
+                .timeout(Duration.ofSeconds(5) )
+                .doOnError( e -> response.setStatusCode( BAD_REQUEST ) )
+                .onErrorResume( e -> Mono.empty() )
+                          .map( v -> item.getItemId() );
     }
 
     @GetMapping("")

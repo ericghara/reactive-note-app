@@ -3,7 +3,7 @@ const iconRoot = "/icons/"
 const iconFilename =  {
     arrowDown : "arrow-ios-downward-outline.svg",
     arrowUp : "arrow-ios-upward-outline.svg",
-    checkMark : "checkmark-outline.svg",
+    checkMark : "checkmark-circle-outline.svg",
     edit : "edit-2-outline.svg",
     more: "more-vertical-outline.svg",
     send: "paper-plane-outline.svg",

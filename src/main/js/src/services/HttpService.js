@@ -8,7 +8,8 @@ const endpoints = {
     getItems : {relPath: "item/", method: 'GET'},
     deleteItem : {relPath: "item/", method: 'DELETE'},
     postItem : {relPath: "item/", method: 'POST'},
-    postList : {relPath: "item/", method: 'POST'},
+    postList : {relPath: "list/", method: 'POST'},
+    putList : {relPath: "list/", method: 'PUT'},
     deleteList : {relPath: "list/", method: 'DELETE'},
     getLists :  {relPath: "list/", method: 'GET'}
 }
@@ -16,7 +17,6 @@ const endpoints = {
 const client = axios.create({timeout : 2500});
 
 const configure = () => {
-    console.log(UserService.getToken() )
     client.interceptors.request.use((config) => {
       if (UserService.isLoggedIn()) {
         const cb = () => {
@@ -28,7 +28,7 @@ const configure = () => {
     });
   };
 
-const getClient = () => client;
+const getClient = () => client
 
 const getEndpoint = (name) => {
     if (endpoints[name] === undefined) {

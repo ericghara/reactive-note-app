@@ -3,15 +3,17 @@ import styled from 'styled-components'
 export const StyledHeader = styled.header`
   background-color: #ffffff;
   padding: 5px 0;
+  font-weight: 700;
+  font-size: 16px;
+  color: #4c3f3f;
 `
 
 export const Nav = styled.nav`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 5px;
-`
-
+  margin: 5px 15px 5px 15px;
+ `
 export const Button = styled.button`
     border-radius: 50px;
     border: none;
