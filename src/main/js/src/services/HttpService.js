@@ -8,6 +8,7 @@ const endpoints = {
     getItems : {relPath: "item/", method: 'GET'},
     deleteItem : {relPath: "item/", method: 'DELETE'},
     postItem : {relPath: "item/", method: 'POST'},
+    putItem : {relPath: "item/", method: 'PUT'},
     postList : {relPath: "list/", method: 'POST'},
     putList : {relPath: "list/", method: 'PUT'},
     deleteList : {relPath: "list/", method: 'DELETE'},

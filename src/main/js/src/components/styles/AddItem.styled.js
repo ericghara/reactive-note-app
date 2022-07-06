@@ -3,7 +3,7 @@ import styled from "styled-components";
 const AddButton = styled.button`
   text-align: center;
   border-radius: 8px;
-  width: 200px;
+  width: 150px;
   font-weight: 700;
   font-size: 16px;
   border: 2px solid #c7c7c7;
@@ -21,10 +21,4 @@ const AddButton = styled.button`
   }
 `
 
-const TextArea = styled.textarea`
-    overflow-y: scroll;
-    overflow-x: clip;
-    outline: none;
-    width: 100%;
-`
-export {AddButton,TextArea};
+export {AddButton};

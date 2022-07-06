@@ -1,6 +1,5 @@
-import {ToDoListHeaderStyled, HeaderIcon} from "./styles/ToDoListContainer.styled";
+import {HeaderIcon, ToDoListHeaderInput, ToDoListHeaderStyled} from "./styles/ToDoListContainer.styled";
 import {useEffect, useState} from "react";
-import UserService from "../services/UserService";
 import {IconService} from "../services/IconService";
 import HttpService from "../services/HttpService";
 import {deepCopy} from "../services/Common";
@@ -27,9 +26,12 @@ const EditActive = ({stateProps, inputProps}) => {
     }
     return (
         <>
-        <input value={inputProps.inputText} onChange={handleInputChange(inputProps.setInputText)}/>
-            <UndoIcon stateProps={stateProps} inputProps={inputProps}/>
-            <SaveIcon stateProps={stateProps} inputProps={inputProps}/>
+            <ToDoListHeaderInput value={inputProps.inputText}
+                   onChange={handleInputChange(inputProps.setInputText)}/>
+            <UndoIcon stateProps={stateProps}
+                      inputProps={inputProps}/>
+            <SaveIcon stateProps={stateProps}
+                      inputProps={inputProps}/>
         </>
     )
 }
@@ -51,9 +53,9 @@ const EditIcon = ({stateProps, inputProps}) => {
         return null
     }
     return <HeaderIcon onClick={handleEditListName(stateProps, inputProps)}
-                 src={IconService.get("edit")}
-                 alt={"edit"}
-                 size={10}/>
+                       src={IconService.get("edit")}
+                       alt={"edit"}
+                       size={10}/>
 }
 
 const UndoIcon = ({stateProps, inputProps}) => {
@@ -61,9 +63,9 @@ const UndoIcon = ({stateProps, inputProps}) => {
         return null
     }
     return <HeaderIcon onClick={handleUndoEditListName(inputProps)}
-                 src={IconService.get("undo")}
-                 alt={"edit"}
-                 size={10}/>
+                       src={IconService.get("undo")}
+                       alt={"edit"}
+                       size={10}/>
 }
 
 const SaveIcon = ({stateProps, inputProps}) => {
@@ -71,9 +73,9 @@ const SaveIcon = ({stateProps, inputProps}) => {
         return null
     }
     return <HeaderIcon onClick={handleSave(stateProps, inputProps)}
-                 src={IconService.get("checkMark")}
-                 alt={"edit"}
-                 size={10}/>
+                       src={IconService.get("checkMark")}
+                       alt={"edit"}
+                       size={10}/>
 }
 
 const handleSave = ({availLists, setAvailLists, curList, setCurList}, {setInputActive, inputText}) => (event) => {
@@ -108,8 +110,8 @@ const handleInputChange = (setInputText) => ({target}) => {
     setInputText(target.value)
 }
 
-const useCurListChange = ({curList}, {setInputActive} ) => {
-    useEffect( () => {
+const useCurListChange = ({curList}, {setInputActive}) => {
+    useEffect(() => {
         setInputActive(false)
     }, [curList])
 }

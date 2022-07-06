@@ -3,13 +3,13 @@ import {ToDoCardStyled} from "./ToDoListContainer.styled";
 import {Icon} from "./SelectLists.styled";
 
 const TextArea = styled.textarea`
+    font-size: inherit;
+    font: inherit;
     overflow-y: scroll;
     overflow-x: clip;
     outline: none;
+    resize: none;
     width: 100%;
-`
-
-const EditCardStyled = styled(ToDoCardStyled)`
 `
 
 const ButtonNav = styled.nav`
@@ -26,4 +26,4 @@ const EditIcon = styled(Icon)`
     border: 1px solid #787171;
 `
 
-export {TextArea, EditCardStyled, ButtonNav, EditIcon}
+export {TextArea, ButtonNav, EditIcon}
