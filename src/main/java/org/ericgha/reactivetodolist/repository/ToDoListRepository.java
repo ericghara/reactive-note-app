@@ -11,6 +11,7 @@ public interface ToDoListRepository extends R2dbcRepository<ToDoList, Long> {
 
     Mono<ToDoList> findByListId(Long listId);
 
-    Flux<ToDoList> findByUserId(Long userId);
+    Flux<ToDoList> findByUserId(String userId);
 
+    Mono<Long> countToDoListByUserIdAndListId(String userId, long listId);
 }

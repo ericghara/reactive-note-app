@@ -3,7 +3,10 @@ package org.ericgha.reactivetodolist.dtos;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import lombok.ToString;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -11,6 +14,9 @@ import java.util.Collection;
 
 @RequiredArgsConstructor
 @Builder
+@EqualsAndHashCode
+@ToString
+@Getter
 public class ToDoUser implements UserDetails {
 
     private final String userId;
@@ -20,6 +26,7 @@ public class ToDoUser implements UserDetails {
     private final String fullName;
     private final String firstName;
     private final String lastName;
+    private final String realm;
 
 
     @Override
@@ -34,7 +41,7 @@ public class ToDoUser implements UserDetails {
 
     @Override
     public String getUsername() {
-        return null;
+        return username;
     }
 
     @Override

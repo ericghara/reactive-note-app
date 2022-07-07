@@ -37,8 +37,7 @@ const updateToken = (successCallback) =>
 
 const getUsername = () => _kc.tokenParsed?.preferred_username;
 
-// change to _kc.idTokenParsed?.sub once userdetails on backend updated
-const getUserId = () => 1
+const getUserId = () => _kc.idTokenParsed?.sub;
 
 const hasRole = (roles) => roles.some((role) => _kc.hasRealmRole(role));
 

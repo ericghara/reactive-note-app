@@ -9,7 +9,8 @@ public enum JwtClaim {
     USERNAME("preferred_username"),
     FIRST_NAME("given_name"),
     LAST_NAME("family_name"),
-    REALM_ACCESS("realm_access");
+    REALM("azp"),
+    SCOPE("scope");
 
     final String key;
 

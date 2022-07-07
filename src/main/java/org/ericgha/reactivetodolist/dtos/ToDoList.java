@@ -12,7 +12,7 @@ public class ToDoList {
 
     @Id
     private Long listId;
-    private Long userId;
+    private String userId;
     private String listName;
 
 }

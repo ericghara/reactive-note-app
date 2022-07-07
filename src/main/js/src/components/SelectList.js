@@ -73,7 +73,7 @@ const handleAddList = (availLists, setAvailLists) => (event) => {
 
 const handleDeleteList = (listId, {availLists, setAvailLists, setCurList}) => (event) => {
     event.preventDefault()
-    HttpService.getClient().delete(HttpService.getEndpoint("deleteList"), {data: {listId} })
+    HttpService.getClient().delete(HttpService.getEndpoint("deleteList") )
         .then( ({data}) => {
             console.log(data)
             const newList = deepCopy(availLists)

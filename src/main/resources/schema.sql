@@ -2,7 +2,7 @@
 CREATE TABLE to_do_lists (
     list_id bigserial PRIMARY KEY,
     list_name varchar(255),
-    user_id bigint
+    user_id varchar(36)
 );
 
 CREATE TABLE to_do_items(

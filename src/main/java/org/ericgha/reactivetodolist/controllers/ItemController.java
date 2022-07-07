@@ -3,9 +3,12 @@ package org.ericgha.reactivetodolist.controllers;
 import lombok.RequiredArgsConstructor;
 import org.ericgha.reactivetodolist.dtos.ToDoItem;
 import org.ericgha.reactivetodolist.dtos.ToDoList;
+import org.ericgha.reactivetodolist.dtos.ToDoUser;
 import org.ericgha.reactivetodolist.repository.ToDoItemRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.server.reactive.ServerHttpResponse;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,10 +34,6 @@ public class ItemController {
 
     private final ToDoItemRepository toDoItemRepository;
 
-    @GetMapping("/hello/{name}")
-    Mono<String> sayHello(@PathVariable("name") String name) {
-        return Mono.just("Hello " + name + ".");
-    }
 
     @PostMapping("")
     Mono<ToDoItem> addItem(@RequestBody ToDoItem item) {
@@ -62,7 +61,10 @@ public class ItemController {
     }
 
     @GetMapping("")
-    Flux<ToDoItem> getItems(@RequestParam Optional<Long> listId, ServerHttpResponse response) {
+    Flux<ToDoItem> getItems(@RequestParam Optional<Long> listId,
+                            ServerHttpResponse response,
+                            @AuthenticationPrincipal Mono<ToDoUser> principal) {
+        principal.subscribe(System.out::println);
         if (listId.isEmpty() ) {
             response.setStatusCode(HttpStatus.NO_CONTENT);
             return Flux.empty();

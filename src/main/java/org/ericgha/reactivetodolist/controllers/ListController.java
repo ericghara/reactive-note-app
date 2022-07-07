@@ -3,8 +3,10 @@ package org.ericgha.reactivetodolist.controllers;
 import lombok.RequiredArgsConstructor;
 import org.ericgha.reactivetodolist.dtos.ToDoItem;
 import org.ericgha.reactivetodolist.dtos.ToDoList;
+import org.ericgha.reactivetodolist.dtos.ToDoUser;
 import org.ericgha.reactivetodolist.repository.ToDoListRepository;
 import org.springframework.http.server.reactive.ServerHttpResponse;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -43,8 +45,9 @@ public class ListController {
     }
 
     @GetMapping("")
-    Flux<ToDoList> getLists(@RequestParam Long userId) {
-        return toDoListRepository.findByUserId(userId);
+    Flux<ToDoList> getLists(@AuthenticationPrincipal Mono<ToDoUser> toDoUser) {
+        return toDoUser.map(ToDoUser::getUserId)
+                       .flatMapMany(toDoListRepository::findByUserId);
     }
 
     @DeleteMapping("")

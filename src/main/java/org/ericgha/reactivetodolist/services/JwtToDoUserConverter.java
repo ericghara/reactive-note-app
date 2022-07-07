@@ -13,17 +13,19 @@ import org.springframework.stereotype.Service;
 /**
  * Creates ToDoUser from client_scopes encoded in jwt
  */
-public class JwtUserDetailsService implements Converter<Jwt, ToDoUser> {
+public class JwtToDoUserConverter implements Converter<Jwt, ToDoUser> {
 
     @Override
     public ToDoUser convert(Jwt source) {
         return ToDoUser.builder()
                 .userId( source.getClaimAsString( JwtClaim.USER_ID.key() ) )
+                .username( source.getClaimAsString( JwtClaim.USERNAME.key() ) )
                 .email( source.getClaimAsString( JwtClaim.EMAIL.key() ) )
                 .emailVerified( source.getClaimAsBoolean( JwtClaim.EMAIL_VERIFIED.key() ) )
                 .fullName( source.getClaimAsString( JwtClaim.FULL_NAME.key() ) )
                 .firstName( source.getClaimAsString( JwtClaim.FIRST_NAME.key() ) )
                 .lastName( source.getClaimAsString( JwtClaim.LAST_NAME.key() ) )
+                .realm( source.getClaimAsString( JwtClaim.REALM.key() ) )
                 .build();
     }
 

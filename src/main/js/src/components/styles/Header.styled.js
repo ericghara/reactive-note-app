@@ -18,7 +18,7 @@ export const Nav = styled.nav`
 export const Button = styled.button`
     border-radius: 50px;
     border: none;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.20);
     cursor: pointer;
     font-size: 16px;
     font-weight: 700;

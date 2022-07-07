@@ -6,10 +6,7 @@ import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.oauth2.core.OAuth2AccessToken;
 import org.springframework.security.oauth2.jwt.Jwt;
-import org.springframework.security.oauth2.server.resource.BearerTokenAuthenticationToken;
-import org.springframework.security.oauth2.server.resource.authentication.BearerTokenAuthentication;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
@@ -19,15 +16,14 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class ToDoUserJwtAuthenticationConverter implements Converter<Jwt, Mono<AbstractAuthenticationToken>> {
-    private static final String ROLES_CLAIM = "roles";
+public class JwtToAuthenticationTokenConverter implements Converter<Jwt, Mono<AbstractAuthenticationToken>> {
     private static final String ROLE_PREFIX = "ROLE_";
-    private final JwtUserDetailsService userDetailsService;
+    private final JwtToDoUserConverter jwtToDoUserConverter;
 
     @Override
     public Mono<AbstractAuthenticationToken> convert(Jwt source) {
         Collection<GrantedAuthority> authorities = extractAuthorities( source );
-        return Mono.just(new UsernamePasswordAuthenticationToken(userDetailsService.convert(source),
+        return Mono.just(new UsernamePasswordAuthenticationToken( jwtToDoUserConverter.convert(source),
                 "n/a", authorities) );
     }
 
@@ -47,7 +43,7 @@ public class ToDoUserJwtAuthenticationConverter implements Converter<Jwt, Mono<A
 
     @SuppressWarnings("unchecked")
     private Collection<String> getScopes(Jwt jwt) {
-        Object scopes = jwt.getClaims().get( JwtClaim.REALM_ACCESS.key() );
+        Object scopes = jwt.getClaims().get( JwtClaim.SCOPE.key() );
         if (scopes instanceof Collection) {
             return (Collection<String>) scopes;
         }
