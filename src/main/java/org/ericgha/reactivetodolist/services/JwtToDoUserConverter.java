@@ -7,6 +7,8 @@ import org.springframework.core.convert.converter.Converter;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.stereotype.Service;
 
+import java.util.Objects;
+
 @Service
 @Slf4j
 @NoArgsConstructor
@@ -18,7 +20,7 @@ public class JwtToDoUserConverter implements Converter<Jwt, ToDoUser> {
     @Override
     public ToDoUser convert(Jwt source) {
         return ToDoUser.builder()
-                .userId( source.getClaimAsString( JwtClaim.USER_ID.key() ) )
+                .userId( source.getClaimAsString( JwtClaim.USER_ID.key() ).toLowerCase() )
                 .username( source.getClaimAsString( JwtClaim.USERNAME.key() ) )
                 .email( source.getClaimAsString( JwtClaim.EMAIL.key() ) )
                 .emailVerified( source.getClaimAsBoolean( JwtClaim.EMAIL_VERIFIED.key() ) )

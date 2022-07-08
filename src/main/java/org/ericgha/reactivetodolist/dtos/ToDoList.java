@@ -15,4 +15,8 @@ public class ToDoList {
     private String userId;
     private String listName;
 
+    public void setUserId(String userId) {
+        this.userId = userId.toLowerCase();
+    }
+
 }

@@ -73,7 +73,8 @@ const handleAddList = (availLists, setAvailLists) => (event) => {
 
 const handleDeleteList = (listId, {availLists, setAvailLists, setCurList}) => (event) => {
     event.preventDefault()
-    HttpService.getClient().delete(HttpService.getEndpoint("deleteList") )
+    const toDelete = availLists.find(l => l.listId === listId)
+    HttpService.getClient().delete(HttpService.getEndpoint("deleteList"), {data: toDelete })
         .then( ({data}) => {
             console.log(data)
             const newList = deepCopy(availLists)
@@ -85,7 +86,7 @@ const handleDeleteList = (listId, {availLists, setAvailLists, setCurList}) => (e
 
 const useFetchLists = (setAvailLists, availLists) => {
     useEffect(() => {
-            HttpService.getClient().get(HttpService.getEndpoint("getLists"), {params: {userId: 1}})
+            HttpService.getClient().get(HttpService.getEndpoint("getLists"))
                 .then(({data}) => setAvailLists(data))
                 .catch(e => {
                     setAvailLists([])

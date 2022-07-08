@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 import org.springframework.security.core.GrantedAuthority;
@@ -19,13 +20,16 @@ import java.util.Collection;
 @Getter
 public class ToDoUser implements UserDetails {
 
+    @NonNull
     private final String userId;
+    @NonNull
     private final  String username;
     private final String email;
     private final Boolean emailVerified;
     private final String fullName;
     private final String firstName;
     private final String lastName;
+    @NonNull
     private final String realm;
 
 

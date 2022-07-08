@@ -1,6 +1,7 @@
 package org.ericgha.reactivetodolist.services;
 
 import lombok.RequiredArgsConstructor;
+import org.ericgha.reactivetodolist.dtos.ToDoUser;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -13,6 +14,8 @@ import reactor.core.publisher.Mono;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Stream;
 
 @Service
 @RequiredArgsConstructor
@@ -22,7 +25,8 @@ public class JwtToAuthenticationTokenConverter implements Converter<Jwt, Mono<Ab
 
     @Override
     public Mono<AbstractAuthenticationToken> convert(Jwt source) {
-        Collection<GrantedAuthority> authorities = extractAuthorities( source );
+        ToDoUser toDoUser= jwtToDoUserConverter.convert(source);
+        Collection<GrantedAuthority> authorities = extractAuthorities( source, toDoUser.getUserId() );
         return Mono.just(new UsernamePasswordAuthenticationToken( jwtToDoUserConverter.convert(source),
                 "n/a", authorities) );
     }
@@ -32,21 +36,18 @@ public class JwtToAuthenticationTokenConverter implements Converter<Jwt, Mono<Ab
         return Converter.super.andThen( after );
     }
 
-    private List<GrantedAuthority> extractAuthorities(Jwt jwt) {
-        return this.getScopes( jwt )
-                .stream()
-                .map( s -> ROLE_PREFIX + s.toUpperCase() )
+    private List<GrantedAuthority> extractAuthorities(Jwt jwt, String userId) {
+        Stream<String> scopes = getScopes( jwt ).stream()
+                .map( s -> ROLE_PREFIX + s.toUpperCase() );
+        Stream<String> selfAuthority = Stream.of(userId);
+        return Stream.concat(scopes, selfAuthority)
                 .map( SimpleGrantedAuthority::new )
                 .map( a -> (GrantedAuthority) a )
                 .toList();
     }
 
-    @SuppressWarnings("unchecked")
     private Collection<String> getScopes(Jwt jwt) {
-        Object scopes = jwt.getClaims().get( JwtClaim.SCOPE.key() );
-        if (scopes instanceof Collection) {
-            return (Collection<String>) scopes;
-        }
-        return Collections.emptyList();
+        String[] scopes = jwt.getClaims().get( JwtClaim.SCOPE.key() ).toString().split("\s");
+        return Set.of(scopes);
     }
 }

@@ -8,7 +8,7 @@ import {ToDoItem} from "./ToDoItem";
 const ToDoList = ({listProps, items, setItems}) => {
     useToDoList(listProps.curList, setItems)
     if (listProps.curList?.listId === undefined) {
-        return null
+        return null;
     }
     return (
         <ToDoListStyled>
@@ -29,6 +29,10 @@ const ToDoList = ({listProps, items, setItems}) => {
 
 const useToDoList = (curList, setItems) => {
     useEffect(() => {
+            if (curList?.listId === undefined) {
+                setItems([])
+                return
+            }
             HttpService.getClient().get(HttpService.getEndpoint("getItems"), {params: {listId: curList.listId}}) // modify
                 .then(response => response.data.sort((a, b) => a.itemIndex - b.itemIndex))
                 .then(items => setItems(items))

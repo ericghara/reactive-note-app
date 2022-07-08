@@ -42,11 +42,12 @@ const handleToggleVisible = ({editVisible, setEditVisible}) => (event) => {
 
 const handleDelete = ({items, itemId, setItems}) => (event) => {
     event.preventDefault()
-    const item = items.find(i => i.itemId === itemId)
-    HttpService.getClient().delete(HttpService.getEndpoint('deleteItem'), {data: item})
+    const delItem = items.find(i => i.itemId === itemId)
+    HttpService.getClient().delete(HttpService.getEndpoint('deleteItem'), {data: delItem})
         .then(({data}) => {
-            console.log(data)
-            setItems(items.filter(i => i.itemId !== itemId))
+            const updItems = items.filter(i => i.itemId !== itemId)
+            updItems.forEach(i => i.itemIndex > delItem.itemIndex && i.itemIndex--)
+            setItems(updItems)
         })
         .catch(e => console.warn('Unable to delete an item'))
 }
