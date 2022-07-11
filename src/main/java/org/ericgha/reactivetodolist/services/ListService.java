@@ -26,6 +26,8 @@ public class ListService {
 
     @PreAuthorize(AUTH_CHECK)
     public Mono<ToDoList> updateList(ToDoList toDoList) {
+        // the update by UserId and... in conjunction with the preAuth check
+        // serves to prevent user a from modifying user b's list
         return toDoListRepository.updateByUserIdAndListId(
                 toDoList.getUserId(),
                 toDoList.getListId(),
