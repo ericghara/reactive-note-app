@@ -1,4 +1,8 @@
-## A To Do List Frontend and Backend
+## A Web App for taking and organizing notes.
+
+Users can take notes and create collections of notes.  Notes are private and persisted between sessions.
+
+[Try the app](https://notes.ericgha.com)
 
 ### Backend
 - Spring Boot
@@ -6,6 +10,9 @@
 - OAuth2 with OIDC (KeyCloak Authorization server)
 - Postgres
 - Jib
+- Testcontainers
+- Mockito
+- JUnit 5
 
 ### Frontend
 - React
