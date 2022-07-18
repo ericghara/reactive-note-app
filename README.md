@@ -1,8 +1,8 @@
-## A Web App for taking and organizing notes.
+## A Web App for taking and organizing notes
 
 Users can take notes and create collections of notes.  Notes are private and persisted between sessions.
 
-[Try the app](https://notes.ericgha.com)
+[Try the app!](https://notes.ericgha.com)
 
 ### Backend
 - Spring Boot
@@ -17,3 +17,8 @@ Users can take notes and create collections of notes.  Notes are private and per
 ### Frontend
 - React
 - Styled-components
+
+### AWS
+- ELB - TLS termination & subdomain routing
+- EC2 - running both Netty app server & Keycloak
+- RDS - Postgres
