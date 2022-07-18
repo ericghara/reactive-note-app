@@ -1,0 +1,75 @@
+plugins {
+    id 'org.springframework.boot' version '2.7.0'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+    id 'application'
+    id 'com.google.cloud.tools.jib' version '3.2.1'
+}
+
+group = 'org.ericgha'
+version = '0.0.1-SNAPSHOT'
+mainClassName = 'org.ericgha.reactivetodolist.ReactiveTodolistApplication.class'
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-data-r2dbc'
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
+    implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    compileOnly 'org.projectlombok:lombok'
+    runtimeOnly 'org.postgresql:postgresql'
+    runtimeOnly 'org.postgresql:r2dbc-postgresql'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.security:spring-security-test'
+    testImplementation 'io.projectreactor:reactor-test'
+    testImplementation 'org.testcontainers:testcontainers:1.17.3'
+    testImplementation 'org.testcontainers:postgresql:1.17.3'
+    testImplementation 'org.testcontainers:junit-jupiter:1.17.3'
+}
+
+tasks.named('test') {
+    environment 'SPRING_PROFILES_ACTIVE','dev'
+    useJUnitPlatform()
+}
+
+jib {
+    extraDirectories {
+        paths {
+            path {
+                from = project(':frontend').buildDir
+                into = '/www'
+            }
+        }
+    }
+    from {
+        image = "amazoncorretto:17-alpine3.15"
+    }
+    to {
+        image = rootProject.name
+        tags = [version]
+    }
+    container {
+        jvmFlags = ["-Xms" + (hasProperty('MEMORY') ? findProperty('MEMORY') :'256') + "m", '-Xdebug']
+        ports = ['8080']
+        volumes = ['/data']
+        environment = [
+                'VERSION': version,
+                'SPRING_PROFILES_ACTIVE': 'prod'
+        ]
+        creationTime = 'USE_CURRENT_TIMESTAMP'
+    }
+}
+
+jibDockerBuild.dependsOn(':frontend:build')
+jibBuildTar.dependsOn(':frontend:build')
+

@@ -1,0 +1,28 @@
+plugins {
+    id "com.github.node-gradle.node" version "3.4.0"
+    id "base"
+}
+
+repositories {
+    mavenCentral()
+}
+
+node {
+    download = true
+    version = '16.14.2'
+    npmVersion = ''
+    distBaseUrl = 'https://nodejs.org/dist'
+    nodeProjectDir = file("${project.projectDir}/src/main/js")
+}
+
+task appNpmBuild(type: NpmTask) {
+    args = ['run', 'build']
+}
+
+task appInstall(type: NpmTask) {
+    // moves node build dir to project build dir
+    args = ['run', 'postBuild']
+}
+
+build.finalizedBy(appNpmBuild)
+appNpmBuild.finalizedBy(appInstall)
