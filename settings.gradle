@@ -1,1 +1,4 @@
 rootProject.name = 'reactive-todolist'
+include ':backend'
+include ':frontend'
+

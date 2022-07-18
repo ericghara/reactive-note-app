@@ -1,6 +1,8 @@
 .gradle
 .idea
 build
+application-dev.yml
+application-prod.yml
 
 # Compiled class file
 *.class
@@ -8,15 +10,15 @@ gradle.properties
 *.gpg
 
 # dependencies
-src/main/js/node_modules
-src/main/js/.pnp
+frontend/src/main/js/node_modules
+frontend/src/main/js/.pnp
 .pnp.js
 
 # testing
-src/main/js/coverage
+frontend/src/main/js/coverage
 
 # production
-src/main/js/build
+frontend/src/main/js/build
 
 # misc
 .DS_Store
