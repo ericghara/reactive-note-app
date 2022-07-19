@@ -24,6 +24,8 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import static org.springframework.http.HttpMethod.GET;
+
 @EnableWebFluxSecurity
 @EnableReactiveMethodSecurity
 @RequiredArgsConstructor
@@ -65,7 +67,7 @@ public class WebSecurityConfiguration {
                 .authorizeExchange()
                 .matchers( PathRequest.toStaticResources().atCommonLocations() )
                 .permitAll()
-                .pathMatchers( "/*", "/icons/**", "/static/**", "/actuator/health" )
+                .pathMatchers(GET, "/*", "/icons/**", "/static/**", "/actuator/health", "/api/list", "/api/item" )
                 .permitAll()
                 .pathMatchers(  "/api/list**", "/api/item**" )
                 .authenticated()

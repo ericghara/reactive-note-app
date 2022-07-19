@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.ericgha.reactivetodolist.dtos.ToDoList;
 import org.ericgha.reactivetodolist.dtos.ToDoUser;
 import org.ericgha.reactivetodolist.repository.ToDoListRepository;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
@@ -11,6 +12,7 @@ import reactor.core.publisher.Mono;
 
 import java.time.Duration;
 import java.util.NoSuchElementException;
+import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
@@ -18,6 +20,8 @@ public class ListService {
 
     final static String AUTH_CHECK = "hasAuthority(#toDoList.userId)";
     private final ToDoListRepository toDoListRepository;
+
+    private final AnonymousUserService anonymousUserService;
 
     @PreAuthorize(AUTH_CHECK)
     public Mono<ToDoList> addList(ToDoList toDoList) {
@@ -41,6 +45,9 @@ public class ListService {
     }
 
     public Flux<ToDoList> getListsFor(Mono<ToDoUser> toDoUser) {
+        if (Objects.isNull(toDoUser) ) {
+            toDoUser = anonymousUserService.getToDoUser();
+        }
         return toDoUser.map( ToDoUser::getUserId )
                 .flatMapMany( toDoListRepository::findByUserId );
     }

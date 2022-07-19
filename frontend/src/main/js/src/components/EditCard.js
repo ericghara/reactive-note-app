@@ -1,5 +1,4 @@
-import {ButtonNav, EditCardStyled, EditIcon, TextArea} from "./styles/EditCard.styled";
-import {Icon} from "./styles/SelectLists.styled";
+import {ButtonNav, EditIcon, TextArea} from "./styles/EditCard.styled";
 import {IconService} from "../services/IconService";
 import {useEffect, useState} from "react";
 import HttpService from "../services/HttpService";
@@ -29,7 +28,7 @@ const BackButton = ({setCardVisible}) =>
     <EditIcon src={IconService.get('undo')} onClick = {handleBack({setCardVisible})} alt={'reset'}/>
 
 const SubmitButton = ({setCardVisible,editItem, items, setItems}) =>
-    <EditIcon src={IconService.get('send')}
+    <EditIcon src={IconService.get('save')}
               onClick={handleSubmit({setCardVisible, editItem, items, setItems})}
               alt={'submit'}/>
 

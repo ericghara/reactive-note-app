@@ -26,3 +26,9 @@ spring:
     init:
       mode: never
 
+app:
+  security:
+    anonymous-user-id: "anonymous"
+    anonymous-username: "anonymous"
+
+

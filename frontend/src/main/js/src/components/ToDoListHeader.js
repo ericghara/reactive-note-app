@@ -3,13 +3,17 @@ import {useEffect, useState} from "react";
 import {IconService} from "../services/IconService";
 import HttpService from "../services/HttpService";
 import {deepCopy} from "../services/Common";
+import UserService from "../services/UserService";
 
 const CurListHeader = ({stateProps}) => {
-    const {availLists, setAvailLists, curList} = stateProps;
+    const {curList} = stateProps;
     const [inputText, setInputText] = useState("")
     const [inputActive, setInputActive] = useState(false)
     const inputProps = {inputText, setInputText, inputActive, setInputActive}
     useCurListChange(stateProps, inputProps)
+    if (! UserService.isLoggedIn() ) {
+        return null
+    }
     if (curList?.listId === undefined) {
         return <ToDoListHeaderStyled/>
     }
@@ -58,7 +62,7 @@ const EditIcon = ({stateProps, inputProps}) => {
                        size={10}/>
 }
 
-const UndoIcon = ({stateProps, inputProps}) => {
+const UndoIcon = ({inputProps}) => {
     if (!inputProps.inputActive) {
         return null
     }

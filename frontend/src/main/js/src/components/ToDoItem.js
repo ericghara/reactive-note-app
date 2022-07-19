@@ -1,10 +1,10 @@
-import {useEffect, useState} from "react";
-import {Icon} from "./styles/SelectLists.styled";
+import {useState} from "react";
 import {IconService} from "../services/IconService";
-import {ButtonNav} from "./styles/EditCard.styled";
 import {ToDoCardIcon, ToDoCardNav, ToDoCardStyled} from "./styles/ToDoItem.styled";
 import {EditCard} from "./EditCard";
 import HttpService from "../services/HttpService";
+import UserService from "../services/UserService";
+import ReactMarkdown from "react-markdown";
 
 
 const ToDoItem = ({itemId, items, setItems, listId, itemIndex, itemText}) => {
@@ -15,13 +15,15 @@ const ToDoItem = ({itemId, items, setItems, listId, itemIndex, itemText}) => {
                          listId={listId}/>
     }
     return <ToDoCardStyled>
-        {itemText}
+        <ReactMarkdown>
+            {itemText}
+        </ReactMarkdown>
         <ToDoCardNav children={getButtons({editVisible, setEditVisible, items, itemId, setItems})}/>
     </ToDoCardStyled>
 }
 
 const getButtons = ({editVisible, setEditVisible, items, itemId, setItems}) => {
-    if (editVisible) {
+    if (editVisible || !UserService.isLoggedIn()) {
         return null
     }
     return <>
@@ -44,7 +46,7 @@ const handleDelete = ({items, itemId, setItems}) => (event) => {
     event.preventDefault()
     const delItem = items.find(i => i.itemId === itemId)
     HttpService.getClient().delete(HttpService.getEndpoint('deleteItem'), {data: delItem})
-        .then(({data}) => {
+        .then(() => {
             const updItems = items.filter(i => i.itemId !== itemId)
             updItems.forEach(i => i.itemIndex > delItem.itemIndex && i.itemIndex--)
             setItems(updItems)

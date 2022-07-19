@@ -26,6 +26,9 @@ const configure = () => {
         };
         return UserService.updateToken(cb);
       }
+      else {
+        return Promise.resolve(config);
+      }
     });
   };
 

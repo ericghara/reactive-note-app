@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import {mobileMediaPx} from "./theme";
 
 export const StyledHeader = styled.header`
   background-color: #ffffff;
@@ -7,6 +6,7 @@ export const StyledHeader = styled.header`
   font-family: 'Roboto', sans-serif;
   font-weight: 700;
   color: #4c3f3f;
+  border-bottom: 2px solid #c7c7c7;
 `
 
 export const Nav = styled.nav`

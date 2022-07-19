@@ -5,12 +5,13 @@ const SelectListsStyled = styled.div`
   float: left;
   @media (max-width: ${mobileMediaPx}) {
     float: none;
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
     overflow-x: auto;
     overflow-y: hidden;
     white-space: nowrap;
-    margin: 0px 0;
-    border: solid #c7c7c7;
-    border-width: 2px 0 0 0;
+    margin: 0 0;
     background-color: #ebfbff;
   }
   margin: 90px 0px;
@@ -49,44 +50,44 @@ const ListButtonStyled = styled.button`
     overflow-x: hidden;
     text-overflow: ellipsis;
     vert-align: middle;
+    margin: 10px 3px;
   }
   margin: 10px 0;
   background-color: ${({selected}) => selected === true ? "#fff3c7" : "#f8c1ff80"};
   color: ${({selected}) => selected === true ? "#545454" : "#4c3f3f"};
-  
+
   &:hover {
     ${({selected}) => {
-      if (selected === false) {
+    if (selected === false) {
         return `opacity: 0.9;
                     transform: scale(0.98);`
-        return ""
-        }
-        }}
-  }
-  `
-  const SelectedListContainer = styled.div`
-    display: flex;
-    flex-direction: row;
-    border: 2px solid #c7c7c7;
-    background-color: #fff3c7;
-    color: #545454;
-    cursor: default;
-    border-radius: 0px 13px 13px 0px;
-    font-weight: 600;
-    font-size: inherit;
-    padding: 15px 15px;
-    margin: 10px 0;
-    width: ${({width}) => 1.5 * (width !== undefined ? width : 150)}px;
-    @media (max-width: ${mobileMediaPx}) {
-      width: auto;
-      text-align: center;
-      min-width: ${({width}) => 1 * (width !== undefined ? width : 150)}px;
-      display: inline-flex;
-      vertical-align: middle;
-      border-radius: 30px;
-      white-space: nowrap;
-      margin: auto 0;
     }
+}}
+  }
+`
+const SelectedListContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  border: 2px solid #c7c7c7;
+  background-color: #fff3c7;
+  color: #545454;
+  cursor: default;
+  border-radius: 0px 13px 13px 0px;
+  font-weight: 600;
+  font-size: inherit;
+  padding: 15px 15px;
+  margin: 10px 0;
+  width: ${({width}) => 1.5 * (width !== undefined ? width : 150)}px;
+  @media (max-width: ${mobileMediaPx}) {
+    width: auto;
+    text-align: center;
+    min-width: ${({width}) => 1 * (width !== undefined ? width : 150)}px;
+    display: inline-flex;
+    vertical-align: middle;
+    border-radius: 30px;
+    white-space: nowrap;
+    margin: 10px 3px;
+  }
 `
 
 const SelectedListText = styled.div`
@@ -97,6 +98,9 @@ const SelectedListText = styled.div`
 const ButtonsHolderStyled = styled.div`
   margin: 0px 10px 0px 0px;
   height: 100%;
+  @media (max-width: ${mobileMediaPx}) {
+    margin: 0 auto;
+  }
 `
 
 const SelectListsHeaderStyled = styled.h2`
@@ -105,11 +109,21 @@ const SelectListsHeaderStyled = styled.h2`
 `
 
 const Icon = styled.img`
-  width: 20px;
+  width: ${({width}) => (width !== undefined ? width : 20)}px;
+  margin-left: 7px;
   opacity: 0.75;
+
   &:hover {
     opacity: 0.95;
   }
 `
 
-export {SelectListsStyled, ListButtonStyled, ButtonsHolderStyled, SelectListsHeaderStyled, SelectedListContainer, Icon, SelectedListText}
+export {
+    SelectListsStyled,
+    ListButtonStyled,
+    ButtonsHolderStyled,
+    SelectListsHeaderStyled,
+    SelectedListContainer,
+    Icon,
+    SelectedListText
+}

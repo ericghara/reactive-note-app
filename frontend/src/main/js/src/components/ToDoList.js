@@ -1,9 +1,10 @@
 import {useEffect} from "react"
 import HttpService from "../services/HttpService"
-import {ToDoListStyled, ToDoCardStyled} from "./styles/ToDoListContainer.styled"
+import {ToDoListStyled} from "./styles/ToDoListContainer.styled"
 import {AddItem} from "./AddItem";
 import {CurListHeader} from "./ToDoListHeader";
 import {ToDoItem} from "./ToDoItem";
+import RenderOnAuthenticated from "./RenderOnAuthenticated";
 
 const ToDoList = ({listProps, items, setItems}) => {
     useToDoList(listProps.curList, setItems)
@@ -22,7 +23,9 @@ const ToDoList = ({listProps, items, setItems}) => {
                           itemId={itemId}
                           key={itemId}/>
             )}
-            <AddItem listId={listProps.curList.listId} items={items} setItems={setItems}/>
+            <RenderOnAuthenticated>
+                <AddItem listId={listProps.curList.listId} items={items} setItems={setItems}/>
+            </RenderOnAuthenticated>
         </ToDoListStyled>
     )
 }

@@ -9,12 +9,15 @@ import org.springframework.transaction.annotation.Transactional;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.Objects;
+
 @Service
 @RequiredArgsConstructor
 public class ItemService {
 
     private final ToDoItemRepository toDoItemRepository;
     private final ListService listService;
+    private final AnonymousUserService anonymousUserService;
 
     @Transactional
     public Mono<ToDoItem> updateItemText(ToDoItem item, Mono<ToDoUser> toDoUser) {
@@ -46,6 +49,9 @@ public class ItemService {
 
     @Transactional(readOnly = true)
     public Flux<ToDoItem> getItems(Long listId, Mono<ToDoUser> toDoUser) {
+        if (Objects.isNull(toDoUser) ) {
+            toDoUser = anonymousUserService.getToDoUser();
+        }
         return listService.userOwnsList( listId, toDoUser )
                           .flatMapMany( toDoItemRepository::findByListId );
     }
