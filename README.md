@@ -16,8 +16,8 @@ Users can take notes and create collections of notes.  Notes are private and per
 
 ### Frontend
 - React
-- React-markdown
 - Styled-components
+- React-markdown
 
 ### AWS
 - ELB - TLS termination & subdomain routing
