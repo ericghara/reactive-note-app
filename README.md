@@ -16,6 +16,7 @@ Users can take notes and create collections of notes.  Notes are private and per
 
 ### Frontend
 - React
+- React-markdown
 - Styled-components
 
 ### AWS
