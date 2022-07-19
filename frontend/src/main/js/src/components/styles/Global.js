@@ -4,7 +4,7 @@ const GlobalStyles = createGlobalStyle`
   * {
     box-sizing: border-box;
   }
-
+  
   body {
     background: #ebfbff;
     color: hsl(192, 100%, 9%);
@@ -19,6 +19,15 @@ const GlobalStyles = createGlobalStyle`
   
   img {
     max-width: 100%;
+  }
+  
+  footer {
+    text-align: center;
+    font-size: .66em;
+    color: #c7c7c7;
+    position: absolute;
+    width: 100%;
+    padding-bottom: 15px;
   }
 `
 

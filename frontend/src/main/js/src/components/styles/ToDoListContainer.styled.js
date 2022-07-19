@@ -9,6 +9,7 @@ const ToDoListStyled = styled.div`
   padding: 10px 20px;
   margin: auto auto 200px auto;
   max-width: 800px;
+  min-height: 100%;
 `
 
 const ToDoListHeaderStyled = styled.h2`
