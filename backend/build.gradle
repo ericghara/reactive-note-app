@@ -7,7 +7,7 @@ plugins {
 }
 
 group = 'org.ericgha'
-version = '0.0.1-SNAPSHOT'
+version = '0.0.2-SNAPSHOT'
 mainClassName = 'org.ericgha.reactivetodolist.ReactiveTodolistApplication.class'
 
 configurations {

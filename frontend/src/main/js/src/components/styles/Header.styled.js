@@ -17,8 +17,8 @@ export const Nav = styled.nav`
 `
 export const Button = styled.button`
   border-radius: 50px;
-  border: none;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.20);
+  border: 2px solid #d6cfe5dd;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
   cursor: pointer;
   font-weight: 700;
   font-size: inherit;
@@ -27,7 +27,8 @@ export const Button = styled.button`
   color: #545454;
 
   &:hover {
-    opacity: 0.9;
-    transform: scale(0.98);
+    opacity: 0.95;
+    transform: scale(0.99);
+    box-shadow: 0 0 7px rgba(0, 0, 0, 0.15);
   }
 `

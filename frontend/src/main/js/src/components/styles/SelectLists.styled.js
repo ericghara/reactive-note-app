@@ -36,8 +36,8 @@ const SelectListsStyled = styled.div`
 `
 const ListButtonStyled = styled.button`
   display: block;
-  border-radius: 0px 13px 13px 0px;
-  border: 2px solid ${({selected}) => selected === true ? "#c7c7c7" : "#d6cfe5"};
+  border-radius: 0 13px 13px 0;
+  border: 2px solid #d6cfe5;
   cursor: pointer;
   font-weight: 600;
   font-size: inherit;
@@ -52,9 +52,14 @@ const ListButtonStyled = styled.button`
     vert-align: middle;
     margin: 10px 3px;
   }
+  &:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.11);
+    border-color: #c7c7c7;
+    transform: scale(1.01);
+  }
   margin: 10px 0;
-  background-color: ${({selected}) => selected === true ? "#fff3c7" : "#f8c1ff80"};
-  color: ${({selected}) => selected === true ? "#545454" : "#4c3f3f"};
+  background-color: #f8c1ff80;
+  color: #4c3f3f;
 
   &:hover {
     ${({selected}) => {
@@ -72,7 +77,7 @@ const SelectedListContainer = styled.div`
   background-color: #fff3c7;
   color: #545454;
   cursor: default;
-  border-radius: 0px 13px 13px 0px;
+  border-radius: 0 13px 13px 0;
   font-weight: 600;
   font-size: inherit;
   padding: 15px 15px;
