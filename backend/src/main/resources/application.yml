@@ -18,10 +18,10 @@ spring:
             scope: openid, profile, roles
         provider:
           ToDo:
-            issuer-uri: https://auth.ericgha.com/realms/ericgha.com
+            issuer-uri: https://auth.ericgha.com/realms/shared
       resourceserver:
         jwt:
-          issuer-uri: https://auth.ericgha.com/realms/ericgha.com
+          issuer-uri: https://auth.ericgha.com/realms/shared
   sql:
     init:
       mode: never

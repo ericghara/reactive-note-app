@@ -1,5 +1,5 @@
 {
-    "realm": "ericgha.com",
+    "realm": "shared",
     "auth-server-url": "https://auth.ericgha.com/",
     "ssl-required": "external",
     "resource": "ToDo",
