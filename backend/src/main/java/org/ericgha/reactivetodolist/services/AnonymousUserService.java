@@ -3,7 +3,6 @@ package org.ericgha.reactivetodolist.services;
 import lombok.Getter;
 import org.ericgha.reactivetodolist.dtos.ToDoUser;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;

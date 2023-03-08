@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import org.ericgha.reactivetodolist.dtos.ToDoList;
 import org.ericgha.reactivetodolist.dtos.ToDoUser;
 import org.ericgha.reactivetodolist.repository.ToDoListRepository;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
