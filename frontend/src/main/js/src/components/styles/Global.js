@@ -25,7 +25,7 @@ const GlobalStyles = createGlobalStyle`
   footer {
     text-align: center;
     font-size: .66em;
-    color: ${Colors["light-border"]};
+    color: ${Colors["text-light"]};
     position: absolute;
     width: 100%;
     padding-bottom: 15px;

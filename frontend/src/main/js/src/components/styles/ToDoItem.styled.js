@@ -25,7 +25,7 @@ const ToDoCardStyled = styled.div`
   }
 
   blockquote {
-    border-left: 4px solid ${Colors["light-border"]};
+    border-left: 4px solid ${Colors["dark-border"]};
     padding-left: 4px;
     color: ${Colors["text-normal"]};
     margin-block: 0.25em .25em;

@@ -7,7 +7,7 @@ const AddButton = styled.button`
   width: 150px;
   font-weight: 700;
   font-size: inherit;
-  border: 2px solid ${Colors["light-border"]};
+  border: 2px solid ${Colors["selected-border"]};
   background-color: ${Colors["fill-selected"]};
   color: ${Colors["text-normal"]};
   max-width: 100%;
@@ -17,8 +17,8 @@ const AddButton = styled.button`
   cursor: pointer;
 
   &:hover {
-    opacity: 0.9;
-    transform: scale(0.98);
+    opacity: .93;
+    box-shadow: 0 0 5px ${Colors["shadow-dark"]};
   }
 `
 

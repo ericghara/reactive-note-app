@@ -3,6 +3,7 @@ import HttpService from "../services/HttpService"
 import {
     ButtonsHolderStyled,
     Icon,
+    InvertedIcon,
     ListButtonStyled,
     SelectedListContainer,
     SelectedListText,
@@ -44,7 +45,7 @@ const SelectedListNav = ({listId, listName, userId, stateProps}) => {
     return (<SelectedListContainer>
         <SelectedListText>{listName}</SelectedListText>
         <RenderOnAuthenticated>
-            <Icon src={IconService.get("trash")} onClick={handleDeleteList(listId, stateProps)} alt={"delete icon"}/>
+            <InvertedIcon src={IconService.get("trash")} onClick={handleDeleteList(listId, stateProps)} alt={"delete icon"}/>
         </RenderOnAuthenticated>
     </SelectedListContainer>)
 }

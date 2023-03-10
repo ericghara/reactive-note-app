@@ -7,7 +7,7 @@ export const StyledHeader = styled.header`
   font-family: 'Roboto', sans-serif;
   font-weight: 700;
   color: ${Colors["text-selected"]};
-  border-bottom: 2px solid ${Colors["light-border"]};
+  border-bottom: 2px solid ${Colors["dark-border"]};
 `
 
 export const Nav = styled.nav`
@@ -18,7 +18,7 @@ export const Nav = styled.nav`
 `
 export const Button = styled.button`
   border-radius: 50px;
-  border: 2px solid ${Colors["light-border"]};
+  border: 2px solid ${Colors["selected-border"]};
   box-shadow: 0 0 10px ${Colors["shadow-light"]};
   cursor: pointer;
   font-weight: 700;
@@ -28,8 +28,7 @@ export const Button = styled.button`
   color: ${Colors["text-normal"]};
 
   &:hover {
-    opacity: 0.95;
-    transform: scale(0.99);
-    box-shadow: 0 0 7px ${Colors["shadow-light"]};
+    opacity: 0.93;
+    box-shadow: 0 0 5px ${Colors["shadow-dark"]};
   }
 `

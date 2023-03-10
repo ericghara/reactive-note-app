@@ -23,16 +23,15 @@ const ToDoListHeaderStyled = styled.h2`
 
 const ToDoListHeaderInput = styled.input`
   text-align: center;
-  border: ridge ${Colors["light-border"]};
+  border: solid ${Colors["dark-border"]};
   border-width: 0 0 2px 0;
-  color: inherit;
-  //border-radius: 7px;
+  color: ${Colors["text-selected"]};
   margin-left: 25px;
   font: inherit;
   background-color: ${Colors["bkg-main"]};
   &:focus {
     outline: none;
-    border: ridge hsl(192,100%,9%);
+    border: solid ${Colors["text-selected"]};
     border-width: 0 0 2px 0;
   }
 `

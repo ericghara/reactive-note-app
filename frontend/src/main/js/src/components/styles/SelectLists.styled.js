@@ -29,8 +29,8 @@ const SelectListsStyled = styled.div`
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: ${Colors["light-border"]};
-    outline: 1px solid ${Colors["light-border"]};
+    background-color: ${Colors["dark-border"]};
+    outline: 1px solid ${Colors["dark-border"]};
     border-radius: 5px;
   }
 `
@@ -54,7 +54,7 @@ const ListButtonStyled = styled.button`
   }
   &:hover {
     box-shadow: 0 0 10px ${Colors["shadow-med"]};
-    border-color: ${Colors["light-border"]};
+    border-color: ${Colors["dark-border"]};
     transform: scale(1.01);
   }
   margin: 10px 0;
@@ -73,7 +73,7 @@ const ListButtonStyled = styled.button`
 const SelectedListContainer = styled.div`
   display: flex;
   flex-direction: row;
-  border: 2px solid ${Colors["light-border"]};
+  border: 2px solid ${Colors["selected-border"]};
   background-color: ${Colors["fill-selected"]};
   color: ${Colors["text-normal"]};
   cursor: default;
@@ -123,6 +123,16 @@ const Icon = styled.img`
   }
 `
 
+const InvertedIcon = styled(Icon)`
+  filter: invert(1);
+  opacity: 1.00;
+  
+  &:hover {
+    opacity: 1.00;
+    filter: invert(.85);
+  }
+`
+
 export {
     SelectListsStyled,
     ListButtonStyled,
@@ -130,5 +140,6 @@ export {
     SelectListsHeaderStyled,
     SelectedListContainer,
     Icon,
+    InvertedIcon,
     SelectedListText
 }
