@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import {mobileMediaPx} from "./theme";
+import {mobileMediaPx, Colors} from "./theme";
 
 const SelectListsStyled = styled.div`
   float: left;
@@ -12,10 +12,10 @@ const SelectListsStyled = styled.div`
     overflow-y: hidden;
     white-space: nowrap;
     margin: 0 0;
-    background-color: #ebfbff;
+    background-color: ${Colors["bkg-main"]};
   }
   margin: 90px 0px;
-  background-color: #ebfbff;
+  background-color: ${Colors["bkg-main"]};
   max-height: 100%;
 
 
@@ -25,19 +25,19 @@ const SelectListsStyled = styled.div`
   }
 
   &::-webkit-scrollbar-track {
-    box-shadow: inset 0px 0px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: inset 0px 0px 2px ${Colors["shadow-dark"]};
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: #c7c7c7;
-    outline: 1px solid #d6cfe5;
+    background-color: ${Colors["light-border"]};
+    outline: 1px solid ${Colors["light-border"]};
     border-radius: 5px;
   }
 `
 const ListButtonStyled = styled.button`
   display: block;
   border-radius: 0 13px 13px 0;
-  border: 2px solid #d6cfe5;
+  border: 2px solid ${Colors["border-button-normal"]};
   cursor: pointer;
   font-weight: 600;
   font-size: inherit;
@@ -53,13 +53,13 @@ const ListButtonStyled = styled.button`
     margin: 10px 3px;
   }
   &:hover {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.11);
-    border-color: #c7c7c7;
+    box-shadow: 0 0 10px ${Colors["shadow-med"]};
+    border-color: ${Colors["light-border"]};
     transform: scale(1.01);
   }
   margin: 10px 0;
-  background-color: #f8c1ff80;
-  color: #4c3f3f;
+  background-color: ${Colors["fill-normal"]};
+  color: ${Colors["text-selected"]};
 
   &:hover {
     ${({selected}) => {
@@ -73,9 +73,9 @@ const ListButtonStyled = styled.button`
 const SelectedListContainer = styled.div`
   display: flex;
   flex-direction: row;
-  border: 2px solid #c7c7c7;
-  background-color: #fff3c7;
-  color: #545454;
+  border: 2px solid ${Colors["light-border"]};
+  background-color: ${Colors["fill-selected"]};
+  color: ${Colors["text-normal"]};
   cursor: default;
   border-radius: 0 13px 13px 0;
   font-weight: 600;

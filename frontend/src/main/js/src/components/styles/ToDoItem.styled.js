@@ -1,12 +1,13 @@
 import styled from "styled-components";
 import {ButtonNav} from "./EditCard.styled";
 import {Icon} from "./SelectLists.styled";
+import {Colors} from "./theme";
 
 const ToDoCardStyled = styled.div`
-  background-color: #fff;
+  background-color: ${Colors["bkg-contrast"]};
   border-radius: 7px;
-  border: 1px solid #c7c7c777;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+  border: 1px solid ${Colors["card-border"]};
+  box-shadow: 0 0 5px ${Colors["shadow-light"]};
   width: 100%;
   white-space: pre-wrap;
   word-wrap: break-word;
@@ -24,9 +25,9 @@ const ToDoCardStyled = styled.div`
   }
 
   blockquote {
-    border-left: 4px solid #c7c7c7;
+    border-left: 4px solid ${Colors["light-border"]};
     padding-left: 4px;
-    color: #545454;
+    color: ${Colors["text-normal"]};
     margin-block: 0.25em .25em;
     display: inline-block;
   }

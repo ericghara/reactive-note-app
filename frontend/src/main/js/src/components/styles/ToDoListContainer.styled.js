@@ -1,11 +1,12 @@
 import styled from "styled-components"
 import {Icon} from "./SelectLists.styled";
+import {Colors} from "./theme";
 
 const ToDoListStyled = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  background-color: #ebfbff;
+  background-color: ${Colors["bkg-main"]};
   padding: 10px 20px;
   margin: auto auto 200px auto;
   max-width: 800px;
@@ -22,13 +23,13 @@ const ToDoListHeaderStyled = styled.h2`
 
 const ToDoListHeaderInput = styled.input`
   text-align: center;
-  border: ridge #c7c7c7;
+  border: ridge ${Colors["light-border"]};
   border-width: 0 0 2px 0;
   color: inherit;
   //border-radius: 7px;
   margin-left: 25px;
   font: inherit;
-  background-color: #ebfbff;
+  background-color: ${Colors["bkg-main"]};
   &:focus {
     outline: none;
     border: ridge hsl(192,100%,9%);

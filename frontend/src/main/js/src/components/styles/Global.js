@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components";
+import {Colors} from "./theme";
 
 const GlobalStyles = createGlobalStyle`
   * {
@@ -6,8 +7,8 @@ const GlobalStyles = createGlobalStyle`
   }
   
   body {
-    background: #ebfbff;
-    color: hsl(192, 100%, 9%);
+    background: ${Colors["bkg-main"]};
+    color: ${Colors["text-normal"]};
     font-family: 'Roboto', sans-serif;
     margin: 0;
     font-size: 1.3em;
@@ -24,7 +25,7 @@ const GlobalStyles = createGlobalStyle`
   footer {
     text-align: center;
     font-size: .66em;
-    color: #c7c7c7;
+    color: ${Colors["light-border"]};
     position: absolute;
     width: 100%;
     padding-bottom: 15px;

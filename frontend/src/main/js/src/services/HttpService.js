@@ -45,14 +45,14 @@ const getEndpoint = (name) => {
 
 const getRoot = () => {
     let root = ""
-    if (!process.env.NODE_ENV || process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'prod') {
-        root = window.location.origin
-    }
-    else if (process.env.NODE_ENV === 'development' && process.env?.REACT_APP_ROOT) {
+    if (process.env.NODE_ENV === 'development' && process.env?.REACT_APP_ROOT) {
+        // Change REACT_APP_ROOT env var to point to a different backend (watch CORS)
+        console.log('Started in dev')
         root = process.env.REACT_APP_ROOT
+        console.log(`REACT_APP_ROOT is ${root}`)
     }
     else {
-        console.warn("Started with an undefined API root")
+        root = window.location.origin
     }
     return root + "/api"
 }

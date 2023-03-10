@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import {Colors} from "./theme";
 
 const AddButton = styled.button`
   text-align: center;
@@ -6,9 +7,9 @@ const AddButton = styled.button`
   width: 150px;
   font-weight: 700;
   font-size: inherit;
-  border: 2px solid #c7c7c7;
-  background-color: #fff3c7;
-  color: #545454;
+  border: 2px solid ${Colors["light-border"]};
+  background-color: ${Colors["fill-selected"]};
+  color: ${Colors["text-normal"]};
   max-width: 100%;
   min-width: 25%;
   padding: 10px 20px;
